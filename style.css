@@ -2,8 +2,34 @@ body {
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
        */
-    font: 100%/1.5 system-ui;
-    max-width: 100ch;
-    margin-inline: max(1em, (100% - 100ch) / 2);
-    padding: 1rem; 
-  }
+  font: 100%/1.5 system-ui;
+}
+
+body {
+  max-width: 100ch;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  padding: 1rem; 
+}
+
+nav ul, nav ul li {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  border-bottom: 1px solid oklch(80% 3% 200);
+  margin-bottom: 1em;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: calc(0.5em - 0.4em);
+}
