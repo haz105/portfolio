@@ -1,35 +1,233 @@
-body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-  font: 100%/1.5 system-ui;
-}
 
-body {
-  max-width: 100ch;
-  margin-inline: max(1em, (100% - 100ch) / 2);
-  padding: 1rem; 
-}
-
-nav ul, nav ul li {
-  display: contents;
-}
-
-nav {
-  display: flex;
-  border-bottom: 1px solid oklch(80% 3% 200);
-  margin-bottom: 1em;
-}
-
-nav a {
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  padding: 0.5em;
-}
-
-nav a.current {
-  border-bottom: 0.4em solid oklch(80% 3% 200);
-  padding-bottom: calc(0.5em - 0.4em);
-}
+   *,
+   *::before,
+   *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+   
+   body {
+     font: 100%/1.5 system-ui, sans-serif;
+     color: oklch(10% 0.02 95);
+     background-color: oklch(95% 0.02 95);
+     max-width: 60ch;
+     margin-inline: max(1em, (100% - 60ch) / 2);
+     padding-block: 2rem;
+   }
+   
+   
+   :root {
+     --accent-color: oklch(30% 0.25 150);
+     --heading-color: oklch(7% 0.02 95);
+     --bg-color: oklch(95% 0.02 95);
+     --text-color: oklch(10% 0.02 95);
+     --border-color: oklch(80% 0.02 95);
+   }
+   
+   html {
+     accent-color: var(--accent-color);
+   }
+   
+   
+   h1, h2, h3, h4, h5, h6 {
+     line-height: 1.1;
+     text-wrap: balance;
+     color: var(--heading-color);
+   }
+   
+   h1 {
+     font-size: 3rem;
+     margin-bottom: 0.5em;
+   }
+   
+   h2 {
+     font-size: 1.5rem;
+     margin-bottom: 0.5em;
+   }
+   
+   h3 {
+     font-size: 1.2rem;
+     margin-bottom: 0.25em;
+   }
+   
+   p {
+     margin-block: 0.75em;
+   }
+   
+   hr {
+     border: none;
+     height: 1px;
+     background-color: var(--border-color);
+     margin-block: 1.5em;
+   }
+   
+   
+   nav {
+     display: flex;
+     border-bottom: 1px solid var(--border-color);
+     margin-bottom: 1em;
+   }
+   
+   nav ul,
+   nav ul li {
+     display: contents; 
+   }
+   
+   nav a {
+     flex: 1;
+     text-align: center;
+     text-decoration: none;
+     color: inherit;
+     padding: 0.5em;
+   }
+   
+   nav a.current {
+     border-bottom: 0.4em solid var(--border-color);
+     padding-bottom: calc(0.5em - 0.4em);
+   }
+   
+   nav a:hover:not(.current) {
+     border-bottom: 0.4em solid var(--accent-color);
+     padding-bottom: calc(0.5em - 0.4em);
+   }
+   
+   
+   .resume-header {
+     text-align: center;
+     margin-bottom: 1.5rem;
+   }
+   
+   .resume-header h1 {
+     margin-bottom: 0.25em;
+   }
+   
+   .resume-header .job-title {
+     font-size: 1.2rem;
+     color: var(--accent-color);
+     margin-bottom: 0.5em;
+   }
+   
+   .resume-header .contact-info {
+     font-size: 0.9rem;
+     color: oklch(25% 0.02 95);
+   }
+   
+   
+   .resume-content {
+     display: grid;
+     grid-template-columns: 1fr; 
+     gap: 2rem;
+   }
+   
+   @media (min-width: 800px) {
+     .resume-content {
+       grid-template-columns: 1fr 2fr;
+     }
+   }
+   
+   
+   .resume-sidebar {
+     background-color: oklch(90% 0.05 90);
+     padding: 1rem;
+     border-radius: 0.5rem;
+   }
+   
+   .skills-list {
+     list-style: none;
+     margin-top: 1rem;
+   }
+   
+   .skills-list li {
+     margin-block: 0.4em;
+     padding: 0.2em 0.5em;
+     background: oklch(88% 0.05 90);
+     border-radius: 0.25em;
+     display: inline-block;
+     margin-inline-end: 0.5em;
+     font-size: 0.85rem;
+   }
+   
+   
+   .resume-main {
+     padding: 1rem;
+     background-color: var(--bg-color);
+   }
+   
+   .resume-section {
+     margin-bottom: 2rem;
+   }
+   
+   .resume-section h2 {
+     border-bottom: 2px solid var(--accent-color);
+     padding-bottom: 0.25em;
+     margin-bottom: 0.75em;
+   }
+   
+   .job {
+     margin-bottom: 1rem;
+   }
+   
+   .job .job-title {
+     font-weight: 600;
+     color: var(--accent-color);
+     margin-bottom: 0.25em;
+   }
+   
+   .job .job-dates {
+     font-size: 0.9rem;
+     color: oklch(30% 0.02 95);
+     margin-bottom: 0.5em;
+   }
+   
+   .job ul {
+     list-style: disc;
+     margin-left: 1.5em;
+     margin-top: 0.5em;
+   }
+   
+   .job ul li {
+     margin-bottom: 0.5em;
+   }
+   
+   
+   .btn {
+     display: inline-block;
+     padding: 0.6em 1em;
+     background-color: var(--accent-color);
+     color: white;
+     border-radius: 0.25em;
+     text-decoration: none;
+     font-weight: 600;
+     transition: background-color 0.3s;
+   }
+   
+   .btn:hover {
+     background-color: oklch(25% 0.3 150);
+     cursor: pointer;
+   }
+   
+   
+   form {
+     display: grid;
+     grid-template-columns: auto 1fr;
+     gap: 1em;
+   }
+   
+   form input,
+   form textarea,
+   form select {
+     width: 100%;
+     box-sizing: border-box;
+   }
+   
+   form label {
+     display: grid;
+     grid-template-columns: subgrid; 
+     grid-column: 1 / -1;           
+   }
+   
+   form button {
+     grid-column: 1 / -1;
+   }
+   

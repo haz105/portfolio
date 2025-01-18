@@ -1,44 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="contact/index.html">Contact</a></li>
-            <li><a href="projects/index.html">Projects</a></li>
-            <li><a href="https://github.com/haz105" target="_blank">Profile</a></li>
-            <li><a href="resume.html">Resume</a></li>
-        </ul>
-    </nav>
-    <section>
-        <h1>Education</h1>
-        <p>University of California, San Diego</p>
-        <p>Bachelors of Science in Data Science</p>
-        <p>Expected Graduation: June 2026</p>
-    </section>
-    <section>
-        <h1>Experience</h1>
-        <p>Data Science Intern at Google</p>
-        <p>June 2022 - September 2022</p>
-        <p>Worked on the Google Search team</p>
-    </section>
-    <section>
-        <h1>Projects</h1>
-        <p>Project 1</p>
-        <p>Project 2</p>
-        <p>Project 3</p>
-    </section>
-    <section>
-        <h1>Skills</h1>
-        <p>Python</p>
-        <p>Java</p>
-        <p>SQL</p>
-    </section>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact/index.html">Contact</a></li>
+      <li><a href="projects/index.html">Projects</a></li>
+      <li><a href="https://github.com/haz105" target="_blank">Profile</a></li>
+      <li><a href="resume.html" class="current">Resume</a></li>
+    </ul>
+  </nav>
+
+  <header class="resume-header">
+    <h1>Your Name</h1>
+    <p class="job-title">Aspiring Data Scientist</p>
+    <p class="contact-info">San Diego, CA | (123) 456-7890 | youremail@example.com</p>
+    <hr />
+  </header>
+
+
+  <div class="resume-content">
+
+    <aside class="resume-sidebar">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>Python</li>
+        <li>Java</li>
+        <li>SQL</li>
+        <li>Data Visualization</li>
+      </ul>
+    </aside>
+
+    <main class="resume-main">
+      <section class="resume-section">
+        <h2>Education</h2>
+        <article>
+          <h3>University of California, San Diego</h3>
+          <p class="job-title">B.S. in Data Science</p>
+          <p class="job-dates">Expected Graduation: June 2026</p>
+          <ul>
+            <li>Relevant Courses: Intro to Data Science, Advanced Python, Machine Learning</li>
+            <li>Dean’s List, Data Science Club Member</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="resume-section">
+        <h2>Experience</h2>
+        <article class="job">
+          <h3>Google</h3>
+          <p class="job-title">Data Science Intern</p>
+          <p class="job-dates">June 2022 - September 2022</p>
+          <ul>
+            <li>Worked on the Google Search team to improve ranking algorithms.</li>
+            <li>Analyzed user behavior data with Python and SQL to identify performance bottlenecks.</li>
+            <li>Presented findings to senior leadership, leading to a 10% reduction in search latency.</li>
+          </ul>
+        </article>
+      </section>
+      
+      <section class="resume-section">
+        <h2>Projects</h2>
+        <article>
+          <h3>Project 1: Movie Recommendation System</h3>
+          <ul>
+            <li>Used collaborative filtering with Python to predict user ratings.</li>
+            <li>Improved recommendation accuracy by 15% compared to baseline.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Project 2: Website Traffic Forecasting</h3>
+          <ul>
+            <li>Implemented ARIMA models in R to forecast daily pageviews.</li>
+            <li>Deployed model as a REST API for real-time reporting.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Project 3: Customer Churn Prediction</h3>
+          <ul>
+            <li>Used logistic regression and random forest in scikit-learn to classify churn.</li>
+            <li>Increased accuracy by 20% through feature engineering and hyperparameter tuning.</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
