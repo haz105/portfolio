@@ -9,30 +9,32 @@ const pages = [
   { url: "resume.html",         title: "Resume" },
 ];
 
+// Count how many segments are in the path
 function getPathDepth() {
-  // e.g. "/index.html" => split("") => ["", "index.html"]
-  // e.g. "/contact/index.html" => ["", "contact", "index.html"]
-  // Filter out empty strings to get actual segments
-  const parts = location.pathname.split("/").filter(Boolean);
-  // If length > 1 => we are definitely in a subfolder
-  return parts.length;
+  // e.g. /myrepo/contact/index.html => ["myrepo","contact","index.html"] => length=3
+  // e.g. /resume.html => ["resume.html"] => length=1
+  return location.pathname.split("/").filter(Boolean).length;
 }
 
 const depth = getPathDepth();
 
-// Create nav
+// 2. Create nav
 const nav = document.createElement("nav");
 document.body.prepend(nav);
 
-// Populate nav
+// 3. Populate nav
 for (let p of pages) {
   let { url, title } = p;
 
+  // If we’re at least 1 folder deep AND this is a relative link...
   if (depth > 1 && !url.startsWith("http")) {
-    // We're at least 1 subfolder deep
-    url = "../" + url;
+    // We need 'depth - 1' times "../" to get back to the correct level
+    let backSteps = depth - 1; 
+    let prefix = "../".repeat(backSteps);
+    url = prefix + url;
   }
 
+  // Create link
   let a = document.createElement("a");
   a.href = url;
   a.textContent = title;
@@ -43,13 +45,14 @@ for (let p of pages) {
     a.host === location.host && a.pathname === location.pathname
   );
 
-  // External => open in new tab
+  // External links => open in new tab
   if (a.host !== location.host) {
     a.target = "_blank";
   }
 
   nav.append(a);
 }
+
 
 // 2. Insert THEME SWITCH
 document.body.insertAdjacentHTML(

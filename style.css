@@ -100,7 +100,7 @@ nav a.current {
 
 /* Adaptive hover with color-mix & system color */
 nav a:hover:not(.current) {
-  background-color: color-mix(in oklch, var(--accent-color), canvas 85%);
+  background-color: color-mix(in lab, var(--accent-color), canvas 85%);
 }
 
 /* RESUME LAYOUT */
