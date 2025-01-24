@@ -1,233 +1,266 @@
+/* Global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-   *,
-   *::before,
-   *::after {
-     box-sizing: border-box;
-     margin: 0;
-     padding: 0;
-   }
-   
-   body {
-     font: 100%/1.5 system-ui, sans-serif;
-     color: oklch(10% 0.02 95);
-     background-color: oklch(95% 0.02 95);
-     max-width: 60ch;
-     margin-inline: max(1em, (100% - 60ch) / 2);
-     padding-block: 2rem;
-   }
-   
-   
-   :root {
-     --accent-color: oklch(30% 0.25 150);
-     --heading-color: oklch(7% 0.02 95);
-     --bg-color: oklch(95% 0.02 95);
-     --text-color: oklch(10% 0.02 95);
-     --border-color: oklch(80% 0.02 95);
-   }
-   
-   html {
-     accent-color: var(--accent-color);
-   }
-   
-   
-   h1, h2, h3, h4, h5, h6 {
-     line-height: 1.1;
-     text-wrap: balance;
-     color: var(--heading-color);
-   }
-   
-   h1 {
-     font-size: 3rem;
-     margin-bottom: 0.5em;
-   }
-   
-   h2 {
-     font-size: 1.5rem;
-     margin-bottom: 0.5em;
-   }
-   
-   h3 {
-     font-size: 1.2rem;
-     margin-bottom: 0.25em;
-   }
-   
-   p {
-     margin-block: 0.75em;
-   }
-   
-   hr {
-     border: none;
-     height: 1px;
-     background-color: var(--border-color);
-     margin-block: 1.5em;
-   }
-   
-   
-   nav {
-     display: flex;
-     border-bottom: 1px solid var(--border-color);
-     margin-bottom: 1em;
-   }
-   
-   nav ul,
-   nav ul li {
-     display: contents; 
-   }
-   
-   nav a {
-     flex: 1;
-     text-align: center;
-     text-decoration: none;
-     color: inherit;
-     padding: 0.5em;
-   }
-   
-   nav a.current {
-     border-bottom: 0.4em solid var(--border-color);
-     padding-bottom: calc(0.5em - 0.4em);
-   }
-   
-   nav a:hover:not(.current) {
-     border-bottom: 0.4em solid var(--accent-color);
-     padding-bottom: calc(0.5em - 0.4em);
-   }
-   
-   
-   .resume-header {
-     text-align: center;
-     margin-bottom: 1.5rem;
-   }
-   
-   .resume-header h1 {
-     margin-bottom: 0.25em;
-   }
-   
-   .resume-header .job-title {
-     font-size: 1.2rem;
-     color: var(--accent-color);
-     margin-bottom: 0.5em;
-   }
-   
-   .resume-header .contact-info {
-     font-size: 0.9rem;
-     color: oklch(25% 0.02 95);
-   }
-   
-   
-   .resume-content {
-     display: grid;
-     grid-template-columns: 1fr; 
-     gap: 2rem;
-   }
-   
-   @media (min-width: 800px) {
-     .resume-content {
-       grid-template-columns: 1fr 2fr;
-     }
-   }
-   
-   
-   .resume-sidebar {
-     background-color: oklch(90% 0.05 90);
-     padding: 1rem;
-     border-radius: 0.5rem;
-   }
-   
-   .skills-list {
-     list-style: none;
-     margin-top: 1rem;
-   }
-   
-   .skills-list li {
-     margin-block: 0.4em;
-     padding: 0.2em 0.5em;
-     background: oklch(88% 0.05 90);
-     border-radius: 0.25em;
-     display: inline-block;
-     margin-inline-end: 0.5em;
-     font-size: 0.85rem;
-   }
-   
-   
-   .resume-main {
-     padding: 1rem;
-     background-color: var(--bg-color);
-   }
-   
-   .resume-section {
-     margin-bottom: 2rem;
-   }
-   
-   .resume-section h2 {
-     border-bottom: 2px solid var(--accent-color);
-     padding-bottom: 0.25em;
-     margin-bottom: 0.75em;
-   }
-   
-   .job {
-     margin-bottom: 1rem;
-   }
-   
-   .job .job-title {
-     font-weight: 600;
-     color: var(--accent-color);
-     margin-bottom: 0.25em;
-   }
-   
-   .job .job-dates {
-     font-size: 0.9rem;
-     color: oklch(30% 0.02 95);
-     margin-bottom: 0.5em;
-   }
-   
-   .job ul {
-     list-style: disc;
-     margin-left: 1.5em;
-     margin-top: 0.5em;
-   }
-   
-   .job ul li {
-     margin-bottom: 0.5em;
-   }
-   
-   
-   .btn {
-     display: inline-block;
-     padding: 0.6em 1em;
-     background-color: var(--accent-color);
-     color: white;
-     border-radius: 0.25em;
-     text-decoration: none;
-     font-weight: 600;
-     transition: background-color 0.3s;
-   }
-   
-   .btn:hover {
-     background-color: oklch(25% 0.3 150);
-     cursor: pointer;
-   }
-   
-   
-   form {
-     display: grid;
-     grid-template-columns: auto 1fr;
-     gap: 1em;
-   }
-   
-   form input,
-   form textarea,
-   form select {
-     width: 100%;
-     box-sizing: border-box;
-   }
-   
-   form label {
-     display: grid;
-     grid-template-columns: subgrid; 
-     grid-column: 1 / -1;           
-   }
-   
-   form button {
-     grid-column: 1 / -1;
-   }
-   
+/* Body => system colors to ensure dark mode flips background & text */
+body {
+  font: 100%/1.5 system-ui, sans-serif;
+  background-color: Canvas;
+  color: CanvasText;
+  max-width: 60ch;
+  margin-inline: max(1em, (100% - 60ch) / 2);
+  padding-block: 2rem;
+}
+
+/*
+  Global color variables (some for accent).
+  Using system colors (Canvas, CanvasText) is key for dark-mode adaptation.
+*/
+:root {
+  --accent-color: oklch(30% 0.25 150);
+  /* We can keep these if we want, but won't use them for main text. */
+  --heading-color: oklch(7% 0.02 95);
+  --bg-color: oklch(95% 0.02 95);
+  --text-color: oklch(10% 0.02 95);
+  --border-color: oklch(80% 0.02 95);
+}
+
+/* Let the browser know we support both light & dark */
+html {
+  color-scheme: light dark;
+  accent-color: var(--accent-color);
+}
+
+/* Headings -> use system text color so they're readable in both modes */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+  color: CanvasText; /* Instead of a fixed dark color */
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25em;
+}
+
+/* Paragraph spacing */
+p {
+  margin-block: 0.75em;
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+  margin-block: 1.5em;
+}
+
+/* NAVIGATION */
+nav {
+  /* Semi-transparent border color for better dark-mode look */
+  --border-color: oklch(50% 10% 200 / 40%);
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1em;
+}
+
+nav ul,
+nav ul li {
+  display: contents;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid var(--border-color);
+  padding-bottom: calc(0.5em - 0.4em);
+}
+
+/* Adaptive hover with color-mix & system color */
+nav a:hover:not(.current) {
+  background-color: color-mix(in oklch, var(--accent-color), canvas 85%);
+}
+
+/* RESUME LAYOUT */
+
+/* 1) Header area */
+.resume-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.resume-header h1 {
+  margin-bottom: 0.25em;
+}
+
+/* job-title => accent color is fine, it looks okay on dark backgrounds */
+.resume-header .job-title {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5em;
+}
+
+/* contact-info => use CanvasText so it's still readable in dark mode */
+.resume-header .contact-info {
+  font-size: 0.9rem;
+  color: CanvasText;
+}
+
+/* 2) Main resume-content grid */
+.resume-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 800px) {
+  .resume-content {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+/* 2a) Sidebar => partial accent in the background */
+.resume-sidebar {
+  /* Mix a small % of accent color with Canvas so it isn't glaring in dark mode. */
+  background-color: color-mix(in oklch, Canvas 90%, var(--accent-color) 10%);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: CanvasText; /* ensures text is visible in dark mode */
+}
+
+.skills-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.skills-list li {
+  /* Also a subtle accent mix for each skill chip */
+  background: color-mix(in oklch, Canvas 85%, var(--accent-color) 15%);
+  color: CanvasText;
+  margin-block: 0.4em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.25em;
+  display: inline-block;
+  margin-inline-end: 0.5em;
+  font-size: 0.85rem;
+}
+
+/* 2b) Main content area => match body or Canvas for background */
+.resume-main {
+  padding: 1rem;
+  background-color: Canvas;
+  color: CanvasText;
+}
+
+/* Resume sections */
+.resume-section {
+  margin-bottom: 2rem;
+}
+
+.resume-section h2 {
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.25em;
+  margin-bottom: 0.75em;
+}
+
+/* job => no special color, so it remains readable in dark mode */
+.job {
+  margin-bottom: 1rem;
+}
+
+/* .job-title => keep accent color (this is separate from heading color) */
+.job .job-title {
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 0.25em;
+}
+
+/* .job-dates => use CanvasText to ensure visibility */
+.job .job-dates {
+  font-size: 0.9rem;
+  color: CanvasText;
+  margin-bottom: 0.5em;
+}
+
+/* job list bullets */
+.job ul {
+  list-style: disc;
+  margin-left: 1.5em;
+  margin-top: 0.5em;
+}
+
+.job ul li {
+  margin-bottom: 0.5em;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.6em 1em;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 0.25em;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: oklch(25% 0.3 150);
+  cursor: pointer;
+}
+
+/* Forms */
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+form button {
+  grid-column: 1 / -1;
+}
+
+/* Theme switcher at top-right */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
+}
