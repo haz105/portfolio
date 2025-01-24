@@ -9,8 +9,16 @@ const pages = [
   { url: "resume.html",         title: "Resume" },
 ];
 
-// Detect if we are on home page (html class="home")
-const ARE_WE_HOME = document.documentElement.classList.contains("home");
+function getPathDepth() {
+  // e.g. "/index.html" => split("") => ["", "index.html"]
+  // e.g. "/contact/index.html" => ["", "contact", "index.html"]
+  // Filter out empty strings to get actual segments
+  const parts = location.pathname.split("/").filter(Boolean);
+  // If length > 1 => we are definitely in a subfolder
+  return parts.length;
+}
+
+const depth = getPathDepth();
 
 // Create nav
 const nav = document.createElement("nav");
@@ -20,8 +28,8 @@ document.body.prepend(nav);
 for (let p of pages) {
   let { url, title } = p;
 
-  // Prepend ../ if not home and it's a relative link
-  if (!ARE_WE_HOME && !url.startsWith("http")) {
+  if (depth > 1 && !url.startsWith("http")) {
+    // We're at least 1 subfolder deep
     url = "../" + url;
   }
 
