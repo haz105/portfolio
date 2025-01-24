@@ -9,11 +9,19 @@ const pages = [
   { url: "resume.html",         title: "Resume" },
 ];
 
-// Count how many segments are in the path
 function getPathDepth() {
-  // e.g. /myrepo/contact/index.html => ["myrepo","contact","index.html"] => length=3
-  // e.g. /resume.html => ["resume.html"] => length=1
-  return location.pathname.split("/").filter(Boolean).length;
+  // e.g. "/portfolio/contact/index.html" => ["portfolio","contact","index.html"]
+  let parts = location.pathname.split("/").filter(Boolean);
+
+  // If your GH Pages repo is named "portfolio", remove that first segment
+  // so the rest is what truly indicates subfolders.
+  if (parts[0] === "portfolio") {
+    parts.shift();  // remove "portfolio"
+  }
+
+  // Now, if we were on /portfolio/contact/index.html,
+  // parts is ["contact","index.html"] => length=2
+  return parts.length;
 }
 
 const depth = getPathDepth();
@@ -26,15 +34,15 @@ document.body.prepend(nav);
 for (let p of pages) {
   let { url, title } = p;
 
-  // If we’re at least 1 folder deep AND this is a relative link...
+  // If we’re more than 1 level deep (like contact/index.html => length=2),
+  // and this is a relative link (doesn’t start with http),
+  // prepend enough "../" to go back up.
   if (depth > 1 && !url.startsWith("http")) {
-    // We need 'depth - 1' times "../" to get back to the correct level
-    let backSteps = depth - 1; 
-    let prefix = "../".repeat(backSteps);
+    // We need (depth - 1) times "../"
+    let prefix = "../".repeat(depth - 1);
     url = prefix + url;
   }
 
-  // Create link
   let a = document.createElement("a");
   a.href = url;
   a.textContent = title;
@@ -45,13 +53,14 @@ for (let p of pages) {
     a.host === location.host && a.pathname === location.pathname
   );
 
-  // External links => open in new tab
+  // External => open in new tab
   if (a.host !== location.host) {
     a.target = "_blank";
   }
 
   nav.append(a);
 }
+
 
 
 // 2. Insert THEME SWITCH
