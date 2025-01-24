@@ -1,49 +1,34 @@
 console.log("IT’S ALIVE!");
 
-// 1. Build the NAV
 const pages = [
-  { url: "",                    title: "Home" },
-  { url: "contact/",            title: "Contact" },
-  { url: "projects/",           title: "Projects" },
+  { url: "",               title: "Home" },
+  { url: "contact/",       title: "Contact" },
+  { url: "projects/",      title: "Projects" },
   { url: "https://github.com/haz105", title: "Profile" },
-  { url: "resume.html",         title: "Resume" },
+  { url: "resume.html",    title: "Resume" },
 ];
 
-function getPathDepth() {
-  // e.g. "/portfolio/contact/index.html" => ["portfolio","contact","index.html"]
-  let parts = location.pathname.split("/").filter(Boolean);
-
-  // If your GH Pages repo is named "portfolio", remove that first segment
-  // so the rest is what truly indicates subfolders.
-  if (parts[0] === "portfolio") {
-    parts.shift();  // remove "portfolio"
-  }
-
-  // Now, if we were on /portfolio/contact/index.html,
-  // parts is ["contact","index.html"] => length=2
-  return parts.length;
+function inSubfolder() {
+  // If the pathname includes "/contact/" or "/projects/"
+  // then we’re one folder deep
+  return location.pathname.includes("/contact/") ||
+         location.pathname.includes("/projects/");
 }
 
-const depth = getPathDepth();
-
-// 2. Create nav
+// Create nav
 const nav = document.createElement("nav");
 document.body.prepend(nav);
 
-// 3. Populate nav
+// Populate nav
 for (let p of pages) {
   let { url, title } = p;
 
-  // If we’re more than 1 level deep (like contact/index.html => length=2),
-  // and this is a relative link (doesn’t start with http),
-  // prepend enough "../" to go back up.
-  if (depth > 1 && !url.startsWith("http")) {
-    // We need (depth - 1) times "../"
-    let prefix = "../".repeat(depth - 1);
-    url = prefix + url;
+  // If we’re in contact/ or projects/ subfolder, and the link is relative:
+  if (inSubfolder() && !url.startsWith("http")) {
+    url = "../" + url; 
   }
 
-  let a = document.createElement("a");
+  const a = document.createElement("a");
   a.href = url;
   a.textContent = title;
 
@@ -53,13 +38,14 @@ for (let p of pages) {
     a.host === location.host && a.pathname === location.pathname
   );
 
-  // External => open in new tab
+  // Open external links in new tab
   if (a.host !== location.host) {
     a.target = "_blank";
   }
 
   nav.append(a);
 }
+
 
 
 
