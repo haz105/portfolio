@@ -1,4 +1,4 @@
-/* Global reset */
+
 *,
 *::before,
 *::after {
@@ -7,7 +7,6 @@
   padding: 0;
 }
 
-/* Body => system colors to ensure dark mode flips background & text */
 body {
   font: 100%/1.5 system-ui, sans-serif;
   background-color: Canvas;
@@ -17,30 +16,23 @@ body {
   padding-block: 2rem;
 }
 
-/*
-  Global color variables (some for accent).
-  Using system colors (Canvas, CanvasText) is key for dark-mode adaptation.
-*/
 :root {
   --accent-color: oklch(30% 0.25 150);
-  /* We can keep these if we want, but won't use them for main text. */
   --heading-color: oklch(7% 0.02 95);
   --bg-color: oklch(95% 0.02 95);
   --text-color: oklch(10% 0.02 95);
   --border-color: oklch(80% 0.02 95);
 }
 
-/* Let the browser know we support both light & dark */
 html {
   color-scheme: light dark;
   accent-color: var(--accent-color);
 }
 
-/* Headings -> use system text color so they're readable in both modes */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
-  color: CanvasText; /* Instead of a fixed dark color */
+  color: CanvasText;
 }
 
 h1 {
@@ -58,12 +50,10 @@ h3 {
   margin-bottom: 0.25em;
 }
 
-/* Paragraph spacing */
 p {
   margin-block: 0.75em;
 }
 
-/* Horizontal rule */
 hr {
   border: none;
   height: 1px;
@@ -71,9 +61,7 @@ hr {
   margin-block: 1.5em;
 }
 
-/* NAVIGATION */
 nav {
-  /* Semi-transparent border color for better dark-mode look */
   --border-color: oklch(50% 10% 200 / 40%);
   display: flex;
   border-bottom: 1px solid var(--border-color);
@@ -98,14 +86,10 @@ nav a.current {
   padding-bottom: calc(0.5em - 0.4em);
 }
 
-/* Adaptive hover with color-mix & system color */
 nav a:hover:not(.current) {
   background-color: color-mix(in lab, var(--accent-color), canvas 85%);
 }
 
-/* RESUME LAYOUT */
-
-/* 1) Header area */
 .resume-header {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -115,20 +99,17 @@ nav a:hover:not(.current) {
   margin-bottom: 0.25em;
 }
 
-/* job-title => accent color is fine, it looks okay on dark backgrounds */
 .resume-header .job-title {
   font-size: 1.2rem;
   color: var(--accent-color);
   margin-bottom: 0.5em;
 }
 
-/* contact-info => use CanvasText so it's still readable in dark mode */
 .resume-header .contact-info {
   font-size: 0.9rem;
   color: CanvasText;
 }
 
-/* 2) Main resume-content grid */
 .resume-content {
   display: grid;
   grid-template-columns: 1fr;
@@ -141,13 +122,11 @@ nav a:hover:not(.current) {
   }
 }
 
-/* 2a) Sidebar => partial accent in the background */
 .resume-sidebar {
-  /* Mix a small % of accent color with Canvas so it isn't glaring in dark mode. */
   background-color: color-mix(in oklch, Canvas 90%, var(--accent-color) 10%);
   padding: 1rem;
   border-radius: 0.5rem;
-  color: CanvasText; /* ensures text is visible in dark mode */
+  color: CanvasText;
 }
 
 .skills-list {
@@ -156,7 +135,6 @@ nav a:hover:not(.current) {
 }
 
 .skills-list li {
-  /* Also a subtle accent mix for each skill chip */
   background: color-mix(in oklch, Canvas 85%, var(--accent-color) 15%);
   color: CanvasText;
   margin-block: 0.4em;
@@ -167,14 +145,12 @@ nav a:hover:not(.current) {
   font-size: 0.85rem;
 }
 
-/* 2b) Main content area => match body or Canvas for background */
 .resume-main {
   padding: 1rem;
   background-color: Canvas;
   color: CanvasText;
 }
 
-/* Resume sections */
 .resume-section {
   margin-bottom: 2rem;
 }
@@ -185,26 +161,22 @@ nav a:hover:not(.current) {
   margin-bottom: 0.75em;
 }
 
-/* job => no special color, so it remains readable in dark mode */
 .job {
   margin-bottom: 1rem;
 }
 
-/* .job-title => keep accent color (this is separate from heading color) */
 .job .job-title {
   font-weight: 600;
   color: var(--accent-color);
   margin-bottom: 0.25em;
 }
 
-/* .job-dates => use CanvasText to ensure visibility */
 .job .job-dates {
   font-size: 0.9rem;
   color: CanvasText;
   margin-bottom: 0.5em;
 }
 
-/* job list bullets */
 .job ul {
   list-style: disc;
   margin-left: 1.5em;
@@ -215,7 +187,6 @@ nav a:hover:not(.current) {
   margin-bottom: 0.5em;
 }
 
-/* Buttons */
 .btn {
   display: inline-block;
   padding: 0.6em 1em;
@@ -232,7 +203,6 @@ nav a:hover:not(.current) {
   cursor: pointer;
 }
 
-/* Forms */
 form {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -256,7 +226,6 @@ form button {
   grid-column: 1 / -1;
 }
 
-/* Theme switcher at top-right */
 .color-scheme {
   position: absolute;
   top: 1rem;
