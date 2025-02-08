@@ -110,27 +110,31 @@ export async function fetchJSON(url) {
 
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   if (!containerElement) {
-      console.error('Invalid container element');
-      return;
+    console.error('Invalid container element');
+    return;
   }
-  
+
   containerElement.innerHTML = '';
-  
+
   if (!projects || projects.length === 0) {
-      containerElement.innerHTML = '<p>No projects found.</p>';
-      return;
+    containerElement.innerHTML = '<p>No projects found.</p>';
+    return;
   }
-  
+
   projects.forEach(project => {
-      const article = document.createElement('article');
-      article.innerHTML = `
-          <${headingLevel}>${project.title}</${headingLevel}>
-          <img src="${project.image}" alt="${project.title}">
-          <p>${project.description}</p>
-      `;
-      containerElement.appendChild(article);
+    const article = document.createElement('article');
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <div class="project-details">
+        <p class="description">${project.description}</p>
+        <p class="year">Year: ${project.year}</p>
+      </div>
+    `;
+    containerElement.appendChild(article);
   });
 }
+
 
 
 export async function fetchGitHubData(username) {
