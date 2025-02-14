@@ -1,0 +1,40 @@
+dl.info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.3em 0.5em;
+    margin: 0;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    transition: none;
+    transition-property: opacity, visibility;
+  }
+  
+  dl.info[hidden]:not(:hover):not(:focus-within) {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  dl.info dt {
+    font-weight: bold;
+    color: #555;
+  }
+  dl.info dd {
+    margin: 0;
+    color: #000;
+  }
+
+  circle {
+    transition: 200ms;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  
+  circle:hover {
+    transform: scale(1.5);
+  }
