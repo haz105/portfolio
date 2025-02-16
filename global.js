@@ -6,11 +6,13 @@ const pages = [
   { url: "projects/",      title: "Projects" },
   { url: "https://github.com/haz105", title: "Profile" },
   { url: "resume.html",    title: "Resume" },
+  { url: "meta/",          title: "Meta"},
 ];
 
 function inSubfolder() {
   return location.pathname.includes("/contact/") ||
-         location.pathname.includes("/projects/");
+         location.pathname.includes("/projects/") ||
+         location.pathname.includes("/meta/");
 }
 
 const nav = document.createElement("nav");

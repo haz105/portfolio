@@ -1,7 +1,7 @@
 let data = [];
 let commits = [];
-let globalXScale, globalYScale; // Globals for brushing
-let brushSelection = null;      // To store current brush selection
+let globalXScale, globalYScale;
+let brushSelection = null;     
 
 async function loadData() {
   data = await d3.csv('loc.csv', (row) => ({
@@ -148,8 +148,6 @@ function updateTooltipPosition(event) {
   tooltip.style.top = `${event.clientY + padding}px`;
 }
 
-// ----- Brush functions -----
-
 function brushed(event) {
   brushSelection = event.selection;
   updateSelection();
@@ -189,9 +187,9 @@ function updateSelectionCount() {
     countElement.style.border = '1px solid orange';
     countElement.style.borderRadius = '4px';
     countElement.style.fontWeight = 'bold';
-    countElement.style.textAlign = 'left'; // Left-align the text
+    countElement.style.textAlign = 'left';
     countElement.style.maxWidth = '200px';  
-    countElement.style.margin = '0.5em 0 0.5em 0.5em'; // Left margin added
+    countElement.style.margin = '0.5em 0 0.5em 0.5em';
     countElement.style.display = 'block';
   } else {
     countElement.textContent = '';
@@ -208,7 +206,7 @@ function updateLanguageBreakdown() {
     container.style.display = 'none';
     return;
   }
-  // Style the container for a grid layout and align it to the left
+
   container.style.display = 'grid';
   container.style.gridTemplateColumns = 'auto auto';
   container.style.gap = '0.5em 1em';
@@ -217,7 +215,7 @@ function updateLanguageBreakdown() {
   container.style.border = '1px solid orange';
   container.style.borderRadius = '4px';
   container.style.maxWidth = '300px';
-  container.style.margin = '0.5em 0 0.5em 0.5em'; // Left margin added
+  container.style.margin = '0.5em 0 0.5em 0.5em';
 
   const lines = selectedCommits.flatMap(d => d.lines);
   const breakdown = d3.rollup(
@@ -233,10 +231,6 @@ function updateLanguageBreakdown() {
   }
   return breakdown;
 }
-
-
-
-// ----- Updated createScatterplot with brushing and tooltip events -----
 
 function createScatterplot() {
   const container = d3.select('#chart');
@@ -329,14 +323,10 @@ function createScatterplot() {
     .attr("stroke", "black")
     .attr("stroke-width", 1);
   
-  // Initialize the brush
   const brush = d3.brush().on('start brush end', brushed);
   const brushGroup = svg.append('g').attr('class', 'brush-group');
   brushGroup.call(brush);
-  
-  // Lower the brush overlay so it doesn't block interactions
   brushGroup.selectAll('.overlay').attr('pointer-events', 'all').lower();
-  // Raise the dots so tooltips and hover events remain accessible
   svg.select('.dots').raise();
 }
 
