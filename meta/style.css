@@ -1,40 +1,108 @@
-dl.info {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.3em 0.5em;
-    margin: 0;
-    padding: 0.5em;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    position: fixed;
-    top: 1em;
-    left: 1em;
-    transition: none;
-    transition-property: opacity, visibility;
-  }
-  
-  dl.info[hidden]:not(:hover):not(:focus-within) {
-    opacity: 0;
-    visibility: hidden;
-  }
-  
-  dl.info dt {
-    font-weight: bold;
-    color: #555;
-  }
-  dl.info dd {
-    margin: 0;
-    color: #000;
-  }
+body {
+  max-width: min(120ch, 80vw);
+  margin: auto;
+  font-family: sans-serif;
+}
 
-  circle {
-    transition: 200ms;
-    transform-origin: center;
-    transform-box: fill-box;
-  }
-  
-  circle:hover {
-    transform: scale(1.5);
-  }
+/* First scrolly + scatterplot */
+#scrollytelling {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 1em;
+}
+#scroll-container {
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+#spacer, #items-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+}
+.item {
+  height: 70px; /* or more if your paragraphs get cut off */
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  position: absolute;
+}
+
+/* Second scrolly */
+#scrollytelling-files {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 1em;
+}
+#scroll-container-files {
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+#spacer-files, #items-container-files {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+}
+.file-item {
+  height: 70px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  position: absolute;
+}
+
+/* .files (the place where we show lines for the *currently visible commit*) */
+dl.files {
+  margin: 1em 0;
+  padding: 0;
+}
+dl.files > div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1em;
+  padding: 0.5em 0.75em;
+}
+dl.files dt {
+  margin: 0;
+  font-weight: bold;
+}
+dl.files dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15em;
+  overflow-x: auto;
+}
+.line {
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+/* Summary stats, etc. (not shown) */
+#stats {
+  max-width: 800px;
+  margin: 2em auto 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* A small circle transition example */
+circle {
+  transition: 200ms;
+}
+circle:hover {
+  transform: scale(1.5);
+}
