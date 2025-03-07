@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-/* First scrolly + scatterplot */
+/* First scrollytelling + scatterplot */
 #scrollytelling {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -21,7 +21,8 @@ body {
 }
 #spacer, #items-container {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
 }
 .item {
@@ -32,7 +33,7 @@ body {
   position: absolute;
 }
 
-/* Second scrolly */
+/* Second scrollytelling */
 #scrollytelling-files {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -49,7 +50,8 @@ body {
 }
 #spacer-files, #items-container-files {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
 }
 .file-item {
@@ -60,7 +62,7 @@ body {
   position: absolute;
 }
 
-/* .files (the place where we show lines for the *currently visible commit*) */
+/* .files (where file details for the visible commit slice are shown) */
 dl.files {
   margin: 1em 0;
   padding: 0;
@@ -91,18 +93,93 @@ dl.files dd {
   border-radius: 50%;
 }
 
-/* Summary stats, etc. (not shown) */
-#stats {
-  max-width: 800px;
-  margin: 2em auto 0;
-  display: flex;
-  justify-content: space-between;
+/* Tooltip styling can be adjusted as needed */
+.info.tooltip {
+  position: fixed;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  font-size: 0.9em;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* A small circle transition example */
-circle {
-  transition: 200ms;
+/* Single-Row Stats Section */
+.single-row-stats {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 1em auto;
+  max-width: 800px;
+  gap: 1em;
 }
-circle:hover {
-  transform: scale(1.5);
+
+.single-row-stats #stats,
+.single-row-stats #selection-info {
+  border: 1px solid #ccc;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+}
+
+.single-row-stats #stats {
+  flex: 1;
+}
+
+.single-row-stats #selection-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+nav {
+  --border-color: oklch(50% 10% 200 / 40%);
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1em;
+}
+nav ul,
+nav ul li {
+  display: contents;
+}
+nav a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em;
+}
+nav a.current {
+  border-bottom: 0.4em solid var(--border-color);
+  padding-bottom: calc(0.5em - 0.4em);
+}
+nav a:hover:not(.current) {
+  background-color: color-mix(in lab, var(--accent-color), canvas 85%);
+}
+
+:root {
+  --accent-color: oklch(30% 0.25 150);
+  --heading-color: oklch(7% 0.02 95);
+  --bg-color: oklch(95% 0.02 95);
+  --text-color: oklch(10% 0.02 95);
+  --border-color: oklch(80% 0.02 95);
+}
+
+html {
+  color-scheme: light dark;
+  accent-color: var(--accent-color);
+}
+
+.color-scheme {
+  position: fixed;
+  top: 0.5em;
+  right: 1em;
+  font-size: 0.85rem;
+  font-family: inherit;
+  background-color: #fff; /* or transparent, etc. */
+  padding: 0.25em;
+  border-radius: 4px;
+  /* other styling as desired */
 }

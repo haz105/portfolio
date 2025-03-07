@@ -9,7 +9,16 @@
 </head>
 <body>
 
-  <!-- First scrollytelling & scatterplot (commits over time) -->
+  <!-- Single-Row Stats Section -->
+  <div id="stats-container" class="single-row-stats">
+    <div id="stats"></div>
+    <div id="selection-info">
+      <p id="selection-count">No commits selected</p>
+      <dl id="language-breakdown" class="stats"></dl>
+    </div>
+  </div>
+
+  <!-- First scrollytelling & scatterplot -->
   <div id="scrollytelling">
     <div id="scroll-container">
       <div id="spacer"></div>
@@ -18,16 +27,12 @@
     <div id="chart"></div>
   </div>
 
-  <!-- Summary Stats -->
-  <div id="stats"></div>
-
-  <!-- Second scrollytelling (but we will treat each scrolled item as *one commit*) -->
+  <!-- Second scrollytelling (commit file details) -->
   <div id="scrollytelling-files">
     <div id="scroll-container-files">
       <div id="spacer-files"></div>
       <div id="items-container-files"></div>
     </div>
-    <!-- We will display each commit’s lines in .files, but one commit at a time -->
     <dl class="files"></dl>
   </div>
 
@@ -42,10 +47,6 @@
     <dt>Lines Edited</dt>
     <dd id="commit-lines"></dd>
   </dl>
-
-  <!-- Brush Selection Count & Language Breakdown -->
-  <p id="selection-count">No commits selected</p>
-  <dl id="language-breakdown" class="stats"></dl>
 
 </body>
 </html>
